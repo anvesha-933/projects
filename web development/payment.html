@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Page</title>
+</head>
+<body style="font-family:Arial; text-align:center; margin-top:100px;">
+
+  <h2>Payment Page</h2>
+
+  <h3>Total Bill Amount: ₹<span id="billAmount"></span></h3>
+
+  <button onclick="payNow()" 
+  style="padding:10px 20px; background:green; color:white; border:none; border-radius:5px;">
+  Pay Now
+  </button>
+
+<script>
+  // Get amount from localStorage
+  let bill = localStorage.getItem("totalBill");
+
+  if(bill){
+    document.getElementById("billAmount").innerText = bill;
+  } else {
+    document.getElementById("billAmount").innerText = 0;
+  }
+
+  function payNow(){
+    alert("Payment Successful!");
+    localStorage.clear(); // clear cart
+    window.location.href = "index.html"; // go back to home
+  }
+</script>
+
+</body>
+</html>

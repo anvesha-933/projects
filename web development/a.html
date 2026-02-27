@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue Web Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Header -->
+  <header class="bg-gray-600 text-white py-5 text-center shadow-md">
+    <h1 class="text-3xl font-bold">Product Catalogue</h1>
+    <p class="text-sm mt-1">Browse our collection of premium items</p>
+    
+    <!-- Cart Info -->
+    <div class="mt-3">
+      🛒 Cart Items: <span id="cartCount">0</span>
+    </div>
+  </header>
+
+  <!-- Catalogue Section -->
+  <section class="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+    <!-- Product Card Example -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="download.jpg" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">PHP & MySQL Web Development</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: Luke Welling & Laura Thompson</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹898</span>
+        <button onclick="addToCart(898)" 
+          class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">
+          Buy Now
+        </button>
+      </div>
+    </div>
+    
+    <!-- Product Card 2 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="ewbsite.jpg" alt="Product 2" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">Web Technologies</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: uttam k. Roy
+                    <br>Publication: oxford university press</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹531</span>
+        <button onclick="addToCart(531)" 
+         class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product Card 3 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="ds.jpg" alt="Product 3" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">Data Structures and Algorithms</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: Mark Allen Weiss
+                    <br>Publication: Pearson</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹632</span>
+        <button onclick="addToCart(632)" 
+         class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Buy Now</button>
+      </div>
+    </div>
+    <!-- Product Card 4 -->
+     <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="python.jpg" alt="Product 4" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">Python</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: Julien Danjou
+                    <br>Publication:  No Starch Press</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹752</span>
+        <button onclick="addToCart(752)" 
+         class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Buy Now</button>
+      </div>
+    </div>
+    <!-- Product Card 5 -->
+     <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="java.png" alt="Product 5" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">Java: The Complete Reference</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: Herbert Schildt
+                    <br>Publication: McGraw-Hill Education</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹899</span>
+        <button onclick="addToCart(899)" 
+         class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Buy Now</button>
+      </div>    
+    </div>
+    <!-- Product Card 6 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
+      <img src="c.jpg" alt="Product 5" class="rounded-lg w-full" style="width:150px; height:150px;">
+      <h2 class="text-lg font-semibold mt-3">C Programming Language</h2>
+      <p class="text-gray-600 text-sm mt-1">Author: Yashavant Kanetkar
+                    <br>Publication: BPB Publications</p>
+      <div class="mt-3 flex justify-between items-center">
+        <span class="text-green-600 font-bold">₹754</span>
+        <button onclick="addToCart(754)" 
+         class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Buy Now</button>
+      </div>    
+    </div>
+
+
+
+  </section>
+
+  <!-- Proceed Button -->
+  <div class="text-center my-6">
+    <button onclick="proceedToPayment()" 
+      class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow">
+      Proceed to Payment
+    </button>
+  </div>
+
+<script>
+  let cartQuantity = 0;
+  let totalAmount = 0;
+
+  function addToCart(price) {
+    cartQuantity++;
+    totalAmount += price;
+
+    document.getElementById("cartCount").innerText = cartQuantity;
+
+    
+    localStorage.setItem("totalBill", totalAmount);
+
+    alert("Item added to cart!");
+  }
+
+  function proceedToPayment() {
+    if(cartQuantity === 0){
+      alert("Your cart is empty!");
+    } else {
+      window.location.href = "payment.html";
+    }
+  }
+</script>
+
+</body>
+</html>

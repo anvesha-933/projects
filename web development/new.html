@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Cart</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin:0; padding:0; background:#f2f2f2;">
+
+    <div style="background:white; min-height:100vh; padding:40px;">
+
+        <h2 style="text-align:center;">📚 My Book Cart</h2>
+
+        <!-- Book 1 -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin:30px 0;">
+            
+            <div style="display:flex; align-items:center;">
+                <img src="https://covers.openlibrary.org/b/id/11153219-L.jpg" 
+                     style="width:100px; height:140px; border-radius:5px; margin-right:20px;">
+                
+                <div>
+                    <h3 style="margin:0;">The Alchemist</h3>
+                    <p style="margin:5px 0;">Price: ₹400</p>
+                </div>
+            </div>
+
+            <div>
+                <button onclick="changeQty(0,-1)" style="padding:6px 12px;">-</button>
+                <span id="qty0" style="margin:0 15px;">1</span>
+                <button onclick="changeQty(0,1)" style="padding:6px 12px;">+</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Book 2 -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin:30px 0;">
+            
+            <div style="display:flex; align-items:center;">
+                <img src="https://covers.openlibrary.org/b/id/10523338-L.jpg" 
+                     style="width:100px; height:140px; border-radius:5px; margin-right:20px;">
+                
+                <div>
+                    <h3 style="margin:0;">Rich Dad Poor Dad</h3>
+                    <p style="margin:5px 0;">Price: ₹550</p>
+                </div>
+            </div>
+
+            <div>
+                <button onclick="changeQty(1,-1)" style="padding:6px 12px;">-</button>
+                <span id="qty1" style="margin:0 15px;">1</span>
+                <button onclick="changeQty(1,1)" style="padding:6px 12px;">+</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Total -->
+        <h2 style="text-align:right; margin-top:40px;">
+            Total: ₹<span id="total">950</span>
+        </h2>
+
+        <div style="text-align:right;">
+            <button onclick="checkout()" 
+            style="padding:12px 25px; background:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Checkout
+            </button>
+        </div>
+
+    </div>
+
+<script>
+    var prices = [400, 550];
+    var quantities = [1, 1];
+
+    function changeQty(index, change) {
+        quantities[index] += change;
+        if (quantities[index] < 1) {
+            quantities[index] = 1;
+        }
+        document.getElementById("qty" + index).innerText = quantities[index];
+        updateTotal();
+    }
+
+    function updateTotal() {
+        var total = 0;
+        for (var i = 0; i < prices.length; i++) {
+            total += prices[i] * quantities[i];
+        }
+        document.getElementById("total").innerText = total;
+    }
+
+    function checkout() {
+        alert("Thank you for purchasing books! Total amount: ₹" + document.getElementById("total").innerText);
+    }
+</script>
+
+</body>
+</html>
